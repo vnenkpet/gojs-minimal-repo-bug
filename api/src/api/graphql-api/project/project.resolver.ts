@@ -90,9 +90,14 @@ export class ProjectResolver {
     return this.projectService.create(data);
   }
 
-  @Mutation(returns => [Project])
+  @Query(type => [Project])
   async myProjects(): Promise<Project[]> {
     return this.projectService.getMyProjects();
+  }
+
+  @Query(type => Project)
+  async project(@Args('id') id: string): Promise<Project> {
+    return this.projectService.getProjectById(id);
   }
 
   //   @Query(returns => Project)

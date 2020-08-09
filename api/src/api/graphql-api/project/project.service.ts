@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { ProjectRepoService } from 'src/model/project/project-repo/project-repo.service';
-import { ProjectDto } from 'src/api/rest-api/request/dto/project.dto';
+import {
+  ProjectRepoService,
+  IProject,
+} from 'src/model/project/project-repo/project-repo.service';
 import { Project, ProjectInputData } from './project.resolver';
 import { ProjectIdentityService } from 'src/shared/identity/project-identity/project-identity.service';
 
@@ -21,5 +23,9 @@ export class ProjectService {
 
   async getMyProjects(): Promise<Project[]> {
     return [];
+  }
+
+  async getProjectById(id: string): Promise<IProject> {
+    return this.projectRepo.getById(id);
   }
 }

@@ -21,8 +21,10 @@ const collection: IProject[] = [
     users: [{ id: '346', role: UserRole.owner }],
 
     // core data
-    nodes: [],
-    edges: [],
+    nodes: [{ uniqueName: 'service-a' }, { uniqueName: 'service-b' }],
+    edges: [
+      { id: '123', sourceNodeId: 'service-a', targetNodeId: 'service-b' },
+    ],
     isPublic: true,
   },
 ];
@@ -85,6 +87,10 @@ export class ProjectRepoService {
 
     collection.push(project);
     return project;
+  }
+
+  async getById(id: string): Promise<IProject> {
+    return collection.find(project => project.id === id);
   }
 
   async getByDsn(dsn: string): Promise<IProject> {

@@ -11,6 +11,8 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
+    "gojs": "^2.1.22",
+    "gojs-react": "^1.0.8",
     "graphql": "^15.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -21,7 +23,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "apollo:codegen": "apollo client:codegen --endpoint http://localhost:3001/graphql --target typescript"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -37,5 +40,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "apollo": "^2.30.2",
+    "apollo-codegen": "^0.20.2"
   }
 }

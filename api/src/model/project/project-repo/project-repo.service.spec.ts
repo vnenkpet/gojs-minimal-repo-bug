@@ -10,7 +10,7 @@ describe('ProjectRepoService', () => {
       imports: [AppModule],
     }).compile();
 
-    service = module.get<ProjectRepoService>(ProjectRepoService);
+    service = await module.resolve<ProjectRepoService>(ProjectRepoService);
   });
 
   it('should be defined', () => {
