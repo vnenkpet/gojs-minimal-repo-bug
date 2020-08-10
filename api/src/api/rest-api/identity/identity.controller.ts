@@ -1,7 +1,7 @@
 import { Controller, Get, UseGuards } from '@nestjs/common';
 import { ProjectIdentityService } from 'src/shared/identity/project-identity/project-identity.service';
 import { ProjectIdentityGuard } from '../project-identity.guard';
-import { IProject } from 'src/model/project/project-repo/project-repo.service';
+import { IProject } from 'src/model/project/interfaces/project.interface';
 
 @UseGuards(ProjectIdentityGuard)
 @Controller(':dsn/identity')

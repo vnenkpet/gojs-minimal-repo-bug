@@ -1,10 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import {
-  ProjectRepoService,
-  IProject,
-} from 'src/model/project/project-repo/project-repo.service';
+import { ProjectRepoService } from 'src/model/project/project-repo/project-repo.service';
 import { Project, ProjectInputData } from './project.resolver';
 import { ProjectIdentityService } from 'src/shared/identity/project-identity/project-identity.service';
+import { IProject } from 'src/model/project/interfaces/project.interface';
 
 @Injectable()
 export class ProjectService {
@@ -14,7 +12,8 @@ export class ProjectService {
   ) {}
 
   async create(data: ProjectInputData): Promise<Project> {
-    return this.projectRepo.create(data);
+    // return this.projectRepo.create(data);
+    return;
   }
 
   async getCurrentProject(): Promise<Project> {

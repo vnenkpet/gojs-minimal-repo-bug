@@ -5,7 +5,7 @@ import { AppModule } from './../src/app.module';
 import {
   IProject,
   UserRole,
-} from 'src/model/project/project-repo/project-repo.service';
+} from 'src/model/project/interfaces/project.interface';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;

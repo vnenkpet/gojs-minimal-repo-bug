@@ -1,5 +1,5 @@
 import { Injectable, Scope } from '@nestjs/common';
-import { IProject } from 'src/model/project/project-repo/project-repo.service';
+import { IProject } from 'src/model/project/interfaces/project.interface';
 
 @Injectable({ scope: Scope.REQUEST })
 export class ProjectIdentityService {

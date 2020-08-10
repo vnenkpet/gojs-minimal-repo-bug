@@ -9,14 +9,14 @@ import {
   Args,
   Query,
 } from '@nestjs/graphql';
-import {
-  IProject,
-  IProjectNode,
-  UserRole,
-  IProjectEdge,
-  IProjectUser,
-} from 'src/model/project/project-repo/project-repo.service';
 import { ProjectService } from './project.service';
+import {
+  UserRole,
+  IProject,
+  IProjectEdge,
+  IProjectNode,
+  IProjectUser,
+} from 'src/model/project/interfaces/project.interface';
 
 registerEnumType(UserRole, { name: 'UserRole' });
 

@@ -2,14 +2,34 @@ import { Injectable } from '@nestjs/common';
 import { IdentityService } from 'src/shared/identity/identity/identity.service';
 import { v4 } from 'uuid';
 import { ProjectIdentityService } from 'src/shared/identity/project-identity/project-identity.service';
-
-export enum UserRole {
-  owner = 'owner',
-  admin = 'admin',
-  viewer = 'viewer',
-}
+import { IProject, UserRole } from '../interfaces/project.interface';
+import { ProjectDto } from 'src/api/rest-api/request/dto/project.dto';
 
 const collection: IProject[] = [
+  {
+    // access info
+    id: 'sampleProjectId',
+    dsn: 'sampleProjectDsn',
+    name: 'Sample Project',
+    createdAt: new Date(),
+
+    // access info
+    users: [{ id: '346', role: UserRole.owner }],
+
+    // core data
+    nodes: [
+      { uniqueName: 'service-a' },
+      { uniqueName: 'service-b' },
+      { uniqueName: 'service-c' },
+    ],
+    edges: [
+      { id: '123', sourceNodeId: 'service-a', targetNodeId: 'service-b' },
+      { id: '346', sourceNodeId: 'service-a', targetNodeId: 'service-c' },
+      { id: '789', sourceNodeId: 'service-b', targetNodeId: 'service-a' },
+      { id: '012', sourceNodeId: 'service-a', targetNodeId: 'service-a' },
+    ],
+    isPublic: true,
+  },
   {
     // access info
     id: 'testProjectId',
@@ -21,50 +41,11 @@ const collection: IProject[] = [
     users: [{ id: '346', role: UserRole.owner }],
 
     // core data
-    nodes: [{ uniqueName: 'service-a' }, { uniqueName: 'service-b' }],
-    edges: [
-      { id: '123', sourceNodeId: 'service-a', targetNodeId: 'service-b' },
-    ],
+    nodes: [],
+    edges: [],
     isPublic: true,
   },
 ];
-
-export interface ProjectDto {
-  name: string;
-}
-
-export interface IProject {
-  // access info
-  id: string;
-  dsn: string;
-  name: string;
-  createdAt: Date;
-
-  // access info
-  users: IProjectUser[];
-
-  // core data
-  nodes: IProjectNode[];
-  edges: IProjectEdge[];
-
-  isPublic: boolean;
-}
-
-export interface IProjectUser {
-  id: string; // user id
-  role: UserRole;
-}
-
-export interface IProjectNode {
-  uniqueName: string;
-  displayName?: string;
-  description?: string;
-}
-export interface IProjectEdge {
-  id: string;
-  sourceNodeId: string;
-  targetNodeId: string;
-}
 
 @Injectable()
 export class ProjectRepoService {
