@@ -1,51 +1,39 @@
-import React from "react";
-
-import { useQuery, gql } from "@apollo/client";
-import { GetProject } from "./__generated__/GetProject";
+import React, { useState } from "react";
 import { ProjectDiagram } from "../ProjectDiagram/ProjectDiagram";
-import { CaptureRequestForm } from "../CaptureRequestForm/CaptureRequestForm";
 
-export const GET_PROJECT = gql`
-  query GetProject($id: String!) {
-    project(id: $id) {
-      id
-      name
-      createdAt
-      edges {
-        id
-        sourceNodeId
-        targetNodeId
-      }
-      nodes {
-        uniqueName
-      }
-      users {
-        id
-        role
-      }
-    }
-  }
-`;
+export type Project = {
+  nodes: { uniqueName: string }[];
+  edges: { id: string; sourceNodeId: string; targetNodeId: string }[];
+};
 
 export function ProjectView() {
-  const { loading, error, data } = useQuery<GetProject>(GET_PROJECT, {
-    variables: { id: "sampleProjectId" },
-    pollInterval: 500,
+  const [project, setProject] = useState<Project>({
+    nodes: [{ uniqueName: "a" }, { uniqueName: "b" }],
+    edges: [{ id: "1", sourceNodeId: "a", targetNodeId: "b" }],
   });
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
-
-  if (data) {
-    console.log("Received data");
-    console.log(data);
-  }
-  const { name } = data!.project;
   return (
     <>
-      <h1>{name}</h1>
-      <CaptureRequestForm />
-      <ProjectDiagram project={data!.project} />
+      <h1>Test</h1>
+      <button
+        onClick={() => {
+          setProject({
+            nodes: [
+              { uniqueName: "a" },
+              { uniqueName: "b" },
+              { uniqueName: "c" },
+            ],
+            edges: [
+              { id: "1", sourceNodeId: "a", targetNodeId: "b" },
+              { id: "2", sourceNodeId: "b", targetNodeId: "a" },
+            ],
+          });
+        }}
+      >
+        Add node
+      </button>
+
+      <ProjectDiagram project={project} />
     </>
   );
 }

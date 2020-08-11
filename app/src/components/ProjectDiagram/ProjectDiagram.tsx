@@ -3,7 +3,7 @@ import React from "react";
 
 import * as go from "gojs";
 import { ReactDiagram } from "gojs-react";
-import { GetProject } from "../ProjectView/__generated__/GetProject";
+import { Project } from "../ProjectView/ProjectView";
 
 function initDiagram() {
   const $ = go.GraphObject.make;
@@ -89,7 +89,7 @@ function handleModelChange(changes: any) {
 }
 
 // render function...
-export function ProjectDiagram(props: GetProject) {
+export function ProjectDiagram(props: { project: Project }) {
   console.log(props.project.nodes);
   return (
     <ReactDiagram
