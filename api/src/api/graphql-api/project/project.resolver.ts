@@ -52,7 +52,7 @@ export class Project implements Omit<IProject, 'dsn'> {
 
 @ObjectType()
 export class ProjectEdge implements IProjectEdge {
-  @Field()
+  @Field(type => ID)
   id: string;
   @Field()
   sourceNodeId: string;

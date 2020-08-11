@@ -27,6 +27,7 @@ function initDiagram() {
     }),
     model: $(go.GraphLinksModel, {
       linkKeyProperty: "key", // IMPORTANT! must be defined for merges and data sync when using GraphLinksModel
+      nodeKeyProperty: "key",
     }),
   });
 

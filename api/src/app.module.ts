@@ -8,7 +8,7 @@ import { GraphQLModule } from '@nestjs/graphql';
   imports: [
     RestApiModule,
     GraphqlApiModule,
-    GraphQLModule.forRoot({ autoSchemaFile: true }),
+    GraphQLModule.forRoot({ autoSchemaFile: true, cors: true }),
   ],
   controllers: [AppController],
 })

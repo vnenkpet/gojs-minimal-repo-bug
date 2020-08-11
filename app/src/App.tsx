@@ -3,14 +3,14 @@ import "./App.css";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { ProjectView } from "./components/ProjectView/ProjectView";
 
-const client = new ApolloClient({
+export const apolloClient = new ApolloClient({
   uri: "http://localhost:3001/graphql",
   cache: new InMemoryCache(),
 });
 
 function App() {
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={apolloClient}>
       <div className="App">
         <header className="App-header">
           <ProjectView />
